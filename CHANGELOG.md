@@ -7,4 +7,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* initialize symfony 5.4 website blog; php 8; husky; commitlint; commitizen; custom monolog 694ad92
+* initialize symfony 5.4 website blog; php 8; custom monolog 694ad92
