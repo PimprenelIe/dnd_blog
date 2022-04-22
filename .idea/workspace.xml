@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c57898c3-ee69-4c0f-8f50-73bf15d093be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Helper/Timestampable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Helper/Userable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Field/VichImageField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/field/vich_image.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dnd_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dnd_blog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Post.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
@@ -167,6 +164,9 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/jms/metadata" />
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="287WqUNsOHRUvatFlBjarnShkV4" />
@@ -203,7 +203,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650568295019</updated>
       <workItem from="1650568296255" duration="2897000" />
-      <workItem from="1650641830010" duration="7190000" />
+      <workItem from="1650641830010" duration="9308000" />
     </task>
     <servers />
   </component>

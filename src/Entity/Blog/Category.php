@@ -29,6 +29,11 @@ class Category
         $this->posts = new ArrayCollection();
     }
 
+    public function countPosts(): int
+    {
+        return $this->posts->count();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
