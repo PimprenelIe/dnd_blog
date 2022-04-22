@@ -1,6 +1,5 @@
 A FAIRE
 - environnement de test avec test unitaire responseSuccessful sur chaque route
-- mettre en place husky et commitlint pour changelog auto
 
 IN PROGESS
 - création des entités
@@ -12,3 +11,4 @@ IN PROGESS
 
 DONE
 - monolog custom à mettre en place
+- mettre en place husky et commitlint pour changelog auto

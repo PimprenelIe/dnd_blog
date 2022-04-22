@@ -14,7 +14,7 @@ when@dev:
       auth:
         type: rotating_file
         max_files: 1
-        path: '%kernel.logs.dir%/%kernel.environment%.auth.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.auth.log'
         level: info
         channels: security
       main_error:
@@ -24,7 +24,7 @@ when@dev:
       streamed_error:
         type: rotating_file
         max_files: 1
-        path: '%kernel.logs.dir%/%kernel.environment%.error.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.error.log'
         level: debug
       main_critical:
         type: fingers_crossed
@@ -33,7 +33,7 @@ when@dev:
       streamed_critical:
         type: rotating_file
         max_files: 1
-        path: '%kernel.logs.dir%/%kernel.environment%.critical.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.critical.log'
         level: debug
       main_deprecation:
         type: fingers_crossed
@@ -42,7 +42,7 @@ when@dev:
       streamed_deprecation:
         type: rotating_file
         max_files: 1
-        path: '%kernel.logs.dir%/%kernel.environment%.deprecated.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.deprecated.log'
         level: debug
         channels: deprecation
       # uncomment to get logging in your browser
@@ -84,7 +84,7 @@ when@prod:
       auth:
         type: rotating_file
         max_files: 3
-        path: '%kernel.logs.dir%/%kernel.environment%.auth.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.auth.log'
         level: info
         channels: security
       main_error:
@@ -94,7 +94,7 @@ when@prod:
       streamed_error:
         type: rotating_file
         max_files: 3
-        path: '%kernel.logs.dir%/%kernel.environment%.error.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.error.log'
         level: debug
       main_critical:
         type: fingers_crossed
@@ -103,7 +103,7 @@ when@prod:
       streamed_critical:
         type: rotating_file
         max_files: 3
-        path: '%kernel.logs.dir%/%kernel.environment%.critical.log'
+        path: '%kernel.logs_dir%/%kernel.environment%.critical.log'
         level: debug
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
