@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c57898c3-ee69-4c0f-8f50-73bf15d093be" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Helper/Timestampable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Helper/Userable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dnd_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dnd_blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,6 +165,8 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="287WqUNsOHRUvatFlBjarnShkV4" />
@@ -164,9 +179,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Helper" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Helper" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -183,7 +203,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650568295019</updated>
       <workItem from="1650568296255" duration="2897000" />
-      <workItem from="1650641830010" duration="4629000" />
+      <workItem from="1650641830010" duration="7190000" />
     </task>
     <servers />
   </component>

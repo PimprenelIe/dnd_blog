@@ -2,6 +2,7 @@ A FAIRE
 - environnement de test avec test unitaire responseSuccessful sur chaque route
 
 IN PROGESS
+
 - création des entités
   - Article
   - Category
@@ -12,3 +13,5 @@ IN PROGESS
 DONE
 - monolog custom à mettre en place
 - mettre en place husky et commitlint pour changelog auto
+- Ajout VichUpload
+- création entité Media 
