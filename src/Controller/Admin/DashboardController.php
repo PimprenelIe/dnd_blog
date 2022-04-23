@@ -8,6 +8,7 @@ use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
 use App\Entity\Media\Media;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -43,6 +44,13 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Dnd Blog');
+    }
+
+    public function configureCrud(): Crud
+    {
+        return parent::configureCrud()
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ->addFormTheme('admin/form/help_seo.html.twig');
     }
 
     public function configureMenuItems(): iterable

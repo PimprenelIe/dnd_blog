@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Adds created at and updated at timestamps to entities.
  * Entities using this must have HasLifecycleCallbacks annotation.
  *
- * @ORM\HasLifecycleCallbacks
  */
 trait Timestampable
 {
@@ -22,20 +21,18 @@ trait Timestampable
 
     /**
      * Gets triggered only on insert
-     *
-     * @ORM\PrePersist
      */
+    #[ORM\PrePersist]
     public function onPrePersist()
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTime();
     }
 
     /**
      * Gets triggered every time on update
-     *
-     * @ORM\PreUpdate
      */
+    #[ORM\PreUpdate]
     public function onPreUpdate()
     {
         $this->updatedAt = new \DateTime();

@@ -29,6 +29,10 @@ class Category
         $this->posts = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->name;
+    }
+
     public function countPosts(): int
     {
         return $this->posts->count();

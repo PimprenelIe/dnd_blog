@@ -6,6 +6,7 @@ use App\Repository\Blog\KeywordRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: KeywordRepository::class)]
 class Keyword
@@ -13,17 +14,24 @@ class Keyword
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $keyword;
+    private ?string $keyword;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $slug;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'keywords')]
     private $posts;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->posts = new ArrayCollection();
+    }
+
+    public function __toString(){
+        return $this->keyword;
     }
 
     public function countPosts(): int
@@ -44,6 +52,18 @@ class Keyword
     public function setKeyword(string $keyword): self
     {
         $this->keyword = $keyword;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

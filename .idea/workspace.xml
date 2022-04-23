@@ -2,15 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c57898c3-ee69-4c0f-8f50-73bf15d093be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/javascript/admin/help_seo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Field/HelpSeoField.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/crud/form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/field/help_seo.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/form/help_seo.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dnd_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dnd_blog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/CategoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/CategoryCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/KeywordCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/KeywordCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PostCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PostCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Comment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Media/Media.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Media/Media.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helper/Timestampable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helper/Timestampable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,6 +178,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
       <path value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="287WqUNsOHRUvatFlBjarnShkV4" />
@@ -178,13 +191,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Helper" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin/field" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\templates\admin\field" />
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\config\packages" />
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Field" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Helper" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\public" />
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\templates\admin\form" />
     </key>
   </component>
   <component name="RunManager">
@@ -205,7 +225,8 @@
       <workItem from="1650641830010" duration="9365000" />
       <workItem from="1650661637572" duration="1238000" />
       <workItem from="1650663023477" duration="721000" />
-      <workItem from="1650701468026" duration="661000" />
+      <workItem from="1650701468026" duration="1184000" />
+      <workItem from="1650704127399" duration="13867000" />
     </task>
     <servers />
   </component>

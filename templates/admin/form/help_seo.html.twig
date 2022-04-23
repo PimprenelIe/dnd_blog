@@ -1,0 +1,153 @@
+{% block help_seo_widget %}
+
+    <div class="d-none">
+        {%- set type = type|default('number') -%}
+        {{ block('form_widget_simple') }}
+    </div>
+
+    <h2>Analysis</h2>
+
+    <div id="redLevel">
+        <p class="nbWords red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Le texte contient <span class="words">0</span> mots. C'est bien loin du minimum recommandé de 300 mots.
+            Ajoutez plus de contenu pertinent.
+        </p>
+        <p class="image red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Ajoutez au moins une image à l'article. Pensez à la rendre cliquable.
+        </p>
+        <p class="descriptionMeta red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Aucune meta description n'a été renseigné. (Une phrase accroche marketing et une phrase descritpion du
+            contenu)
+        </p>
+        <p class="titreMeta red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Aucune meta titre n'a été renseigné.
+        </p>
+        <p class="internLink red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Vous devriez renseigner au moins un lien interne.
+        </p>
+        <p class="keywordFirstParagraph red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Le mot-clé doit apparaitre dans le premier paragraphe.
+        </p>
+        <p class="keywordSubTitle red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Ajouter des sous-titres à votre article.
+        </p>
+        <p class="keywordDensity red">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            La densité du mot-clé est de <span class="density">0</span>%, ce qui est bien en-dessous des 0.5% minimum
+            recommandé; le mot-clé a été trouvé <span class="nbKeyword">0</span> fois.
+        </p>
+        <p class="nbWordsParagraph red d-none">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Au moins 1 paragraphe contient plus de 150 mots.
+            Etes-vous sûrs que toutes les informations traitent du même sujet et appartienent donc au même paragraphe ?
+            Penser à utiliser des sous-tires.
+        </p>
+        <p class="descriptionMeta red2 d-none">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Une meta description a été renseigné, mais elle ne contient pas le mot-clé.
+        </p>
+        <p class="titreMeta red2 d-none">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Un meta titre a été renseigné, mais il ne contient pas le mot-clé.
+        </p>
+        <p class="keywordTitle red d-none">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Le mot-clé doit apparaitre dans le titre de l'article.
+        </p>
+        <p class="keywordDensity red2 d-none">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            La densité du mot-clé est de <span class="density">0</span>%, ce qui est bien au-dessus des 2.5% maximum
+            recommandé; le mot-clé a été trouvé <span class="nbKeyword">0</span> fois.
+        </p>
+    </div>
+
+    <div id="orangeLevel">
+        <p class="slug orange">
+            <i class="fas fa-circle icon" style="color: red;"></i>
+            Le mot-clé doit apparaitre dans l'url (slug) de l'article.
+        </p>
+        <p class="externLink orange">
+            <i class="fas fa-circle icon" style="color: orange;"></i>
+            Vous devriez renseigner au moins un lien externe.
+        </p>
+        <p class="keywordSubTitle orange d-none">
+            <i class="fas fa-circle icon" style="color: orange;"></i>
+            Le mot-clé doit apparaitre dans au moins un des sous-titres de l'article.
+        </p>
+        <p class="descriptionMeta orange d-none">
+            <i class="fas fa-circle icon" style="color: orange;"></i>
+            La meta description contient moins de 120 caractères. Vous pouvez aller jusque 150 caractères.
+        </p>
+        <p class="titreMeta orange d-none">
+            <i class="fas fa-circle icon" style="color: orange;"></i>
+            Le meta titre contient moins de 50 caractères. Vous pouvez aller jusque 70 caractères.
+        </p>
+    </div>
+
+    <div id="greenLevel">
+        <p class="nbWordsParagraph green">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Aucun des paragraphes n'est trop long. Ce qui est bien =D
+        </p>
+        <p class="nbWords green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le texte contient <span class="words">0</span> mots. C'est plus ou égal au minimum recommandé de 300 mots.
+        </p>
+        <p class="image green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Il y a au moins une image dans l'article.
+        </p>
+        <p class="descriptionMeta green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            La meta description contient le mot-clé.
+        </p>
+        <p class="descriptionMeta green2 d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            La meta description a une bonne longueur.
+        </p>
+        <p class="slug green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le mot-clé apparait dans l'url (slug) de l'article.
+        </p>
+        <p class="keywordTitle green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le mot-clé apparait dans le titre de l'article.
+        </p>
+        <p class="keywordSubTitle green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le mot-clé apparait dans au moins un des sous-titres de l'article.
+        </p>
+        <p class="keywordDensity green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            La densité du mot-clé est de <span class="density">0</span>%, ce qui est bien; le mot-clé a été trouvé <span
+                    class="nbKeyword">0</span> fois.
+        </p>
+        <p class="titreMeta green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le meta titre contient le mot-clé.
+        </p>
+        <p class="titreMeta green2 d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le meta titre a une bonne longueur.
+        </p>
+        <p class="internLink green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Au moins un lien interne est renseigné.
+        </p>
+        <p class="externLink green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Au moins un lien externe est renseigné.
+        </p>
+        <p class="keywordFirstParagraph green d-none">
+            <i class="fas fa-circle icon" style="color: green;"></i>
+            Le mot-clé apparait dans le premier paragraphe.
+        </p>
+    </div>
+{% endblock %}

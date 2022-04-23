@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Blog\Keyword;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class KeywordCrudController extends AbstractCrudController
@@ -19,7 +20,8 @@ class KeywordCrudController extends AbstractCrudController
     {
         return [
             TextField::new('keyword'),
-            IntegerField::new('countPosts')
+            SlugField::new('slug')->setTargetFieldName('keyword'),
+            IntegerField::new('countPosts')->setDisabled()
         ];
     }
 

@@ -20,8 +20,8 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            SlugField::new('slug'),
-            IntegerField::new('countPosts')
+            SlugField::new('slug')->setTargetFieldName('name'),
+            IntegerField::new('countPosts')->setDisabled()
         ];
     }
 

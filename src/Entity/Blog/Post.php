@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Post
 {
     use Timestampable;
@@ -19,43 +20,40 @@ class Post
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private ?string $title;
 
     #[ORM\Column(type: 'text')]
-    private $abstract;
+    private ?string $abstract;
 
     #[ORM\Column(type: 'text')]
-    private $content;
+    private ?string $content;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $slug;
+    private ?string $slug;
 
     #[ORM\Column(type: 'boolean')]
-    private $draft;
-
-    #[ORM\Column(type: 'boolean')]
-    private $active;
+    private bool $active = false;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private $publishedAt;
+    private ?\DateTimeInterface $publishedAt;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $visit;
+    private ?int $visit = 0;
 
     #[ORM\Column(type: 'string', length: 70, nullable: true)]
-    private $metaTitle;
+    private ?string $metaTitle;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $metaDescription;
+    private ?string $metaDescription;
 
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
-    private $keywordSeo;
+    private ?string $keywordSeo;
 
     #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'posts')]
-    private $imageTitle;
+    private ?Media $imageTitle;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'posts')]
     private $categories;
@@ -65,6 +63,9 @@ class Post
 
     #[ORM\ManyToMany(targetEntity: Keyword::class, inversedBy: 'posts')]
     private $keywords;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $helpSeo;
 
     public function __construct()
     {
@@ -122,18 +123,6 @@ class Post
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getDraft(): ?bool
-    {
-        return $this->draft;
-    }
-
-    public function setDraft(bool $draft): self
-    {
-        $this->draft = $draft;
 
         return $this;
     }
@@ -296,6 +285,18 @@ class Post
     public function removeKeyword(Keyword $keyword): self
     {
         $this->keywords->removeElement($keyword);
+
+        return $this;
+    }
+
+    public function getHelpSeo(): ?int
+    {
+        return $this->helpSeo;
+    }
+
+    public function setHelpSeo(?int $helpSeo): self
+    {
+        $this->helpSeo = $helpSeo;
 
         return $this;
     }
