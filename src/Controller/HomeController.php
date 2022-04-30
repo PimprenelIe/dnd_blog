@@ -12,7 +12,7 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/", name="app_lucky_number")
+     * @Route("/", name="home")
      */
     public function number(): Response
     {

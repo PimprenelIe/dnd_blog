@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c57898c3-ee69-4c0f-8f50-73bf15d093be" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dnd_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dnd_blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascript/admin/help_seo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/admin/help_seo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/CategoryCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/CategoryCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/KeywordCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/KeywordCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/PostCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/PostCrudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Blog/Keyword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/UserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/UserCrudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +171,8 @@
       <path value="$PROJECT_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
       <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
       <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/rate-limiter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/lock" />
     </include_path>
   </component>
   <component name="ProjectId" id="287WqUNsOHRUvatFlBjarnShkV4" />
@@ -192,6 +198,8 @@
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Helper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\templates\admin" />
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Controller\Admin" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\public" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\templates\admin\form" />
     </key>
@@ -221,7 +229,7 @@
       <workItem from="1651170674091" duration="698000" />
       <workItem from="1651173694339" duration="6753000" />
       <workItem from="1651246842813" duration="1312000" />
-      <workItem from="1651330607431" duration="16663000" />
+      <workItem from="1651330607431" duration="20698000" />
     </task>
     <servers />
   </component>
