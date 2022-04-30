@@ -9,13 +9,13 @@
         <a href="#" class="ea-lightbox-thumbnail" data-featherlight="#{{ html_id }}"
            data-featherlight-close-on-click="anywhere">
 {#            <img src="{{ vich_uploader_asset(entity.instance, field.property ~ 'File', entity.fqcn)|imagine_filter('admin_thumbnail') }}"#}
-            <img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn) }}"
+            <img src="{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn)|imagine_filter('admin_thumbnail') }}"
                  alt="{{ entity.name }}" class="img-fluid">
         </a>
 
         <div id="{{ html_id }}" class="ea-lightbox">
 {#            <img src="{{ vich_uploader_asset(entity.instance, field.property ~ 'File', entity.fqcn)|imagine_filter('admin_full') }}"#}
-            <img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn) }}"
+            <img src="{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn)|imagine_filter('admin_full') }}"
                  alt="{{ entity.name }}">
         </div>
     {% endif %}

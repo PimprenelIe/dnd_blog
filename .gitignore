@@ -4,8 +4,11 @@
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/public/upload/
+/public/
+!/public/css
+!/public/javascript
+!/public/.htaccess
+!/public/index.php
 /var/
 /vendor/
 /node_modules/
@@ -20,3 +23,6 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
