@@ -7,6 +7,7 @@ use App\Entity\Blog\Comment;
 use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
 use App\Entity\Media\Media;
+use App\Entity\Page\Page;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -66,6 +67,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section('Site');
+        yield MenuItem::linkToCrud('Pages', 'fa fa-scroll', Page::class);
 
         yield MenuItem::section('Blog');
         yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class);

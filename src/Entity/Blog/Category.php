@@ -18,7 +18,7 @@ class Category extends PageContent
     private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $name;
+    private ?string $title;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'categories')]
     private  $posts;
@@ -29,7 +29,7 @@ class Category extends PageContent
     }
 
     public function __toString(){
-        return $this->name ?? 'Category '.$this->id;
+        return $this->title ?? 'Category '.$this->id;
     }
 
     public function countPosts(): int
@@ -42,14 +42,14 @@ class Category extends PageContent
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }

@@ -1,42 +1,47 @@
 let keyword = "";
 let nbWordsInBody = 0;
-let idKeywordSeo = 'Post_keywordSeo';
-let idTitle = 'Post_title';
-let idContent = 'Post_content';
-let idMetaTitle = 'Post_metaTitle';
-let idMetaDescription = 'Post_metaDescription';
-let idSlug = 'Post_slug';
+let idKeywordSeo = '_keywordSeo';
+let idTitle = '_title';
+let idContent = '_content';
+let idMetaTitle = '_metaTitle';
+let idMetaDescription = '_metaDescription';
+let idSlug = '_slug';
+let selectorHelpSeo = null;
 
+let prefix = '';
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    let elementKeywordSeo = document.getElementById(idKeywordSeo);
-    let elementTitle = document.getElementById(idTitle);
-    let elementContent = document.getElementById(idContent);
-    let elementMetaTitle = document.getElementById(idMetaTitle);
-    let elementMetaDescription = document.getElementById(idMetaDescription);
-    let elementSlug = document.getElementById(idSlug);
+    selectorHelpSeo = document.querySelector('[name*="helpSeo"]');
+    if (selectorHelpSeo !== null) {
+        prefix = selectorHelpSeo.dataset.prefix;
+
+        let elementKeywordSeo = document.getElementById(prefix + idKeywordSeo);
+        let elementTitle = document.getElementById(prefix + idTitle);
+        let elementContent = document.getElementById(prefix + idContent);
+        let elementMetaTitle = document.getElementById(prefix + idMetaTitle);
+        let elementMetaDescription = document.getElementById(prefix + idMetaDescription);
+        let elementSlug = document.getElementById(prefix + idSlug);
 
 
+        keyword = elementKeywordSeo.value;
 
-    keyword = elementKeywordSeo.value;
+        update();
 
-    update();
+        ['keyup', 'paste', 'change'].forEach(function (e) {
+            elementKeywordSeo.addEventListener(e, onChange);
+            elementTitle.addEventListener(e, onChange);
+            elementContent.addEventListener(e, onChange);
+            elementMetaTitle.addEventListener(e, onChange);
+            elementMetaDescription.addEventListener(e, onChange);
+            elementSlug.addEventListener(e, onChange);
 
-    ['keyup', 'paste', 'change'].forEach(function (e) {
-        elementKeywordSeo.addEventListener(e, onChange);
-        elementTitle.addEventListener(e, onChange);
-        elementContent.addEventListener(e, onChange);
-        elementMetaTitle.addEventListener(e, onChange);
-        elementMetaDescription.addEventListener(e, onChange);
-        elementSlug.addEventListener(e, onChange);
+            CKEDITOR.instances[prefix + idContent].on('key', function () {
+                update();
+            })
+        });
 
-        CKEDITOR.instances[idContent].on('key', function() {
-            update();
-        })
-    });
-
-
+    }
 }, false);
 
 function spinnerHelpSeo($isOn) {
@@ -52,64 +57,63 @@ function onChange(e) {
     update(e.target.id);
 }
 
-function update($type = idKeywordSeo) {
-    console.log('upadte');
+function update($type = prefix + idKeywordSeo) {
     spinnerHelpSeo(true);
 
     switch ($type) {
 
-        case idKeywordSeo:
+        case prefix + idKeywordSeo:
             /**
              * Modification du mot clef
              */
-            changeMessage(document.getElementById(idContent).value);
-            changeDescription(document.getElementById(idTitle).value);
-            changeTitreMeta(document.getElementById(idMetaTitle).value);
-            changeSlug(document.getElementById(idSlug).value);
-            changeAbstract(document.getElementById(idMetaDescription).value);
+            changeMessage(document.getElementById(prefix + idContent).value);
+            changeDescription(document.getElementById(prefix + idTitle).value);
+            changeTitreMeta(document.getElementById(prefix + idMetaTitle).value);
+            changeSlug(document.getElementById(prefix + idSlug).value);
+            changeAbstract(document.getElementById(prefix + idMetaDescription).value);
             break;
-        case idTitle:
+        case prefix + idTitle:
             /**
              * Modification du titre de l'article
              */
-            changeDescription(document.getElementById(idTitle).value);
+            changeDescription(document.getElementById(prefix + idTitle).value);
             break;
-        case idContent:
+        case prefix + idContent:
             /**
              * Modification du texte principal
              */
-            changeMessage(document.getElementById(idContent).value);
+            changeMessage(document.getElementById(prefix + idContent).value);
             break;
-        case idMetaTitle:
+        case prefix + idMetaTitle:
             /**
              * Modification du meta titre de l'article
              */
-            changeTitreMeta(document.getElementById(idMetaTitle).value);
+            changeTitreMeta(document.getElementById(prefix + idMetaTitle).value);
             break;
-        case idMetaDescription:
+        case prefix + idMetaDescription:
             /**
              * Modification de la meta description
              */
-            changeAbstract(document.getElementById(idMetaDescription).value);
+            changeAbstract(document.getElementById(prefix + idMetaDescription).value);
             break;
-        case idSlug:
+        case prefix + idSlug:
             /**
              * Modification du slug
              */
-            changeSlug(document.getElementById(idSlug).value);
+            changeSlug(document.getElementById(prefix + idSlug).value);
             break;
         default:
-            changeMessage(document.getElementById(idContent).value);
+            changeMessage(document.getElementById(prefix + idContent).value);
             break;
     }
 
 
     if (document.querySelectorAll('.red:not(.d-none)').length > 0) {
-        document.getElementById('Post_helpSeo').value = 0;
+        selectorHelpSeo.value = 0;
     } else if (document.querySelectorAll('.orange:not(.d-none)').length > 0) {
-        document.getElementById('Post_helpSeo').value = 1;
+        selectorHelpSeo.value = 1;
     } else {
-        document.getElementById('Post_helpSeo').value = 2;
+        selectorHelpSeo.value = 2;
     }
 
     sleep(500).then(() => {
@@ -310,12 +314,6 @@ function keywordIn($content, $class) {
 }
 
 function keywordInSlug($content, $class) {
-
-
-    console.log($class);
-    console.log($content);
-    console.log(keyword);
-
     if ($content.length > 0 && keyword.length > 3 && $content.toLowerCase().includes(keyword)) {
         document.querySelector('.' + $class + '.orange').classList.add('d-none');
         document.querySelector('.' + $class + '.green').classList.remove('d-none');
@@ -371,7 +369,6 @@ function keywordDensity($content) {
     document.querySelector('.keywordDensity.red').classList.remove('d-none');
     document.querySelector('.keywordDensity.red2').classList.add('d-none');
     document.querySelector('.keywordDensity.green').classList.add('d-none');
-
 }
 
 function keywordSubTitle($content) {

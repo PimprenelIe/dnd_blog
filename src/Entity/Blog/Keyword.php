@@ -18,7 +18,7 @@ class Keyword extends PageContent
     private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $keyword;
+    private ?string $title;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'keywords')]
     private $posts;
@@ -29,7 +29,7 @@ class Keyword extends PageContent
     }
 
     public function __toString(){
-        return $this->keyword;
+        return $this->title;
     }
 
     public function countPosts(): int
@@ -42,14 +42,14 @@ class Keyword extends PageContent
         return $this->id;
     }
 
-    public function getKeyword(): ?string
+    public function getTitle(): ?string
     {
-        return $this->keyword;
+        return $this->title;
     }
 
-    public function setKeyword(string $keyword): self
+    public function setTitle(string $title): self
     {
-        $this->keyword = $keyword;
+        $this->title = $title;
 
         return $this;
     }

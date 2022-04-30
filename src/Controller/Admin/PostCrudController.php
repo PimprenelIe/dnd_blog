@@ -5,14 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Blog\Category;
 use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
-use App\Entity\Media\Media;
 use App\Field\GoogleViewField;
 use App\Field\HelpSeoField;
 use App\Field\ImageChoiceField;
-use App\Field\VichImageField;
-use App\Form\ChooseMediaType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -73,13 +69,13 @@ class PostCrudController extends AbstractCrudController
                 ->setFormTypeOption('by_reference', false)
                 ->setFormTypeOption('choice_label', static function (Category $category) {
                     return sprintf('%s (%s)',
-                        $category->getName(),
+                        $category->getTitle(),
                         $category->countPosts()
                     );
                 })
                 ->setFormattedValue(static function (Category $category) {
                     return sprintf('%s (%s)',
-                        $category->getName(),
+                        $category->getTitle(),
                         $category->countPosts()
                     );
                 })
@@ -88,13 +84,13 @@ class PostCrudController extends AbstractCrudController
                 ->setFormTypeOption('by_reference', false)
                 ->setFormTypeOption('choice_label', static function (Keyword $keyword) {
                     return sprintf('%s (%s)',
-                        $keyword->getKeyword(),
+                        $keyword->getTitle(),
                         $keyword->countPosts()
                     );
                 })
                 ->setFormattedValue(static function (Keyword $keyword) {
                     return sprintf('%s (%s)',
-                        $keyword->getKeyword(),
+                        $keyword->getTitle(),
                         $keyword->countPosts()
                     );
                 })
@@ -108,12 +104,15 @@ class PostCrudController extends AbstractCrudController
             TextField::new('imageTitle.fileName')
                 ->setFormTypeOption('attr', ['class' => 'imageTitle_fileName'])
                 ->setFormTypeOption('row_attr', ['class' => 'd-none'])
-                ->setDisabled(true),
+                ->setDisabled(true)
+                ->onlyOnForms(),
 
 
             FormField::addPanel(false)->addCssClass('col-xl-12'),
             TextField::new('keywordSeo')->onlyOnForms(),
-            HelpSeoField::new('helpSeo', 'Score SEO'),
+            HelpSeoField::new('helpSeo', 'Score SEO')
+                ->setFormTypeOption('attr', ['data-prefix' => 'Post'])
+            ,
 
 
             FormField::addTab('SEO'),

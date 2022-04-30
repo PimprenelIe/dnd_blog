@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Blog\Keyword;
+use App\Field\GoogleViewField;
 use App\Field\HelpSeoField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -19,15 +21,20 @@ class KeywordCrudController extends AbstractCrudController
         return Keyword::class;
     }
 
+    public function configureAssets(Assets $assets): Assets
+    {
+        return parent::configureAssets($assets)
+            ->addJsFile('javascript/admin/help_seo.js');
+    }
 
     public function configureFields(string $pageName): iterable
     {
         return [
             FormField::addTab('Détails'),
             FormField::addPanel(false)->addCssClass('col-xl-9'),
-            TextField::new('keyword')->setColumns(6),
+            TextField::new('title')->setColumns(6),
             SlugField::new('slug')
-                ->setTargetFieldName('keyword')
+                ->setTargetFieldName('title')
                 ->setColumns(6)
                 ->hideOnIndex(),
 
@@ -42,12 +49,15 @@ class KeywordCrudController extends AbstractCrudController
 
             FormField::addPanel(false)->addCssClass('col-xl-12'),
             TextField::new('keywordSeo')->onlyOnForms(),
-            HelpSeoField::new('helpSeo', 'Score SEO'),
+            HelpSeoField::new('helpSeo', 'Score SEO')
+                ->setFormTypeOption('attr', ['data-prefix' => 'Keyword']),
 
 
             FormField::addTab('SEO'),
             TextField::new('metaTitle')->hideOnIndex(),
             TextField::new('metaDescription')->hideOnIndex(),
+            GoogleViewField::new('googleView', false)->setColumns(12)->hideOnIndex(),
+
         ];
     }
 
