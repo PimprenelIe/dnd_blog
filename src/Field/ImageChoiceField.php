@@ -4,25 +4,20 @@ namespace App\Field;
 
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-final class HelpSeoField implements FieldInterface
+final class ImageChoiceField implements FieldInterface
 {
     use FieldTrait;
 
-    /**
-     * @required'javascript/admin/help_seo.js'
-     *
-     * @param string $propertyName
-     * @param false $label
-     * @return static
-     */
     public static function new(string $propertyName, $label = false): self
     {
         return (new self())
             ->setProperty($propertyName)
             ->setLabel($label)
-            ->setTemplatePath('admin/field/help_seo.html.twig')
-            ->setFormTypeOption('block_prefix', 'help_seo')
+            ->setTemplatePath('admin/field/vich_image.html.twig')
+            ->setFormTypeOption('block_prefix', 'image_choice')
             ;
+
     }
 }

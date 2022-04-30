@@ -1,0 +1,19 @@
+{% block google_view_widget %}
+    <div class="google_view">
+        <div class="google_view_container">
+            <div class="google_view_titre_slug">
+                <a href="#">
+                    <h3 class="google_view_titre">
+                        Meta-titre sinon titre de mon article par défaut
+                    </h3>
+                    <div class="google_view_lien">
+                        <cite class="google_view_base_url">{{ app.request.getBaseURL() }}<span class="google_view_slug"> › posts › url-de-mon-article...</span></cite>
+                    </div>
+                </a>
+            </div>
+            <div class="google_view_description">
+                <em>Meta-description sinon meta-description de base</em>
+            </div>
+        </div>
+    </div>
+{% endblock %}

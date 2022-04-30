@@ -8,6 +8,7 @@ use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
 use App\Entity\Media\Media;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -50,7 +51,16 @@ class DashboardController extends AbstractDashboardController
     {
         return parent::configureCrud()
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
-            ->addFormTheme('admin/form/help_seo.html.twig');
+            ->addFormTheme('admin/form/help_seo.html.twig')
+            ->addFormTheme('admin/form/google_view.html.twig')
+            ->addFormTheme('admin/form/image_choice.html.twig');
+    }
+
+    public function configureAssets(): Assets
+    {
+        return parent::configureAssets()
+            ->addCssFile('css/admin/google_view.css')
+            ;
     }
 
     public function configureMenuItems(): iterable

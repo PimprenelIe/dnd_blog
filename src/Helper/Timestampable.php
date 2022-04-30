@@ -14,10 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
 trait Timestampable
 {
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    protected $createdAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * Gets triggered only on insert

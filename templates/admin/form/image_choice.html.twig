@@ -1,0 +1,225 @@
+{% block image_choice_widget %}
+    <div id="image-picker-{{ id }}" class="image-picker-container">
+
+
+        <div class="d-none">
+            {{ block('form_widget_simple') }}
+        </div>
+        <div class="image-picker-select">
+            <button type="button"></button>
+            <div class="b d-none">
+                <input class="autocomplete" type="text">
+                <div class="spinner-container d-none">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <ul class="a">
+                </ul>
+            </div>
+        </div>
+        <div class="image-selected">
+        </div>
+    </div>
+
+    <style>
+        .image-picker-container .a {
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+
+        .image-picker-container .spinner-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .image-picker-container .autocomplete {
+            margin: 5px;
+            width: 95%;
+        }
+
+        .image-picker-container .a img, .image-picker-container button img {
+            width: 12px;
+        }
+
+        .image-picker-container .a li {
+            list-style: none;
+            width: 103px;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        .image-picker-container .a li:hover {
+            background-color: #5368d5;
+        }
+
+        .image-picker-container .b {
+            width: 100%;
+            max-width: 325px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 5px;
+            position: absolute;
+            z-index: 1000;
+            background-color: #f1f5f9;
+        }
+
+        .image-picker-container button {
+            width: 100%;
+            max-width: 350px;
+            height: 34px;
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .image-picker-container button:hover {
+            background-color: #F4F3F3;
+            border: 1px solid transparent;
+            box-shadow: inset 0 0 0 1px #ccc;
+        }
+
+        .image-picker-container button:focus {
+            outline: none;
+        }
+    </style>
+
+    <script>
+        var block = document.getElementById('image-picker-{{ id }}');
+        var id = '{{ id }}';
+        var path = '/dnd_blog/public/upload/media/';
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            // var langArray = [];
+            // var elements = block.querySelectorAll('select option');
+            //
+            // elements.forEach((element) => {
+            //     var img = element.dataset.thumbnail;
+            //     var value = element.value;
+            //     var item = '<li><img class="w-100" src="' + img + '" data-value="' + value + '"/></li>';
+            //     langArray.push(item);
+            // })
+
+            // block.querySelector('.a').innerHTML = langArray.join('\n');
+
+            /**
+             * Affichage de la valeur de l'input au chargement de la page s'il existe déjà une valeur
+             */
+            initChoice()
+
+            /**
+             * Ajout event listener pour selectionner une nouvelle image
+             */
+            onClickMedia();
+
+            /**
+             * Open/close dropdown
+             */
+            initToggleDropdown();
+
+            /**
+             * Search on load
+             */
+            getMediaAsync('')
+                .then(data => {
+                    handleResponse(data)
+                });
+
+
+            block.querySelector('.autocomplete').addEventListener('keyup', search);
+
+        });
+
+
+        function search(event) {
+            let search = event.target.value;
+            getMediaAsync(search)
+                .then(data => {
+                    handleResponse(data)
+                });
+        }
+
+
+        function spinner($isOn) {
+            if ($isOn) {
+                block.querySelector('.a').classList.add('d-none');
+                block.querySelector('.spinner-container').classList.remove('d-none');
+            } else {
+                block.querySelector('.a').classList.remove('d-none');
+                block.querySelector('.spinner-container').classList.add('d-none');
+            }
+        }
+
+        function handleResponse(data) {
+            var langArray = [];
+            data.forEach((element) => {
+                var img = path + element.fileName;
+                var value = element.id;
+                var item = '<li><img class="w-100" src="' + img + '" data-value="' + value + '"/></li>';
+                langArray.push(item);
+            })
+
+            block.querySelector('.a').innerHTML = langArray.join('\n');
+            onClickMedia();
+            spinner(false);
+        }
+
+        async function getMediaAsync(search) {
+            spinner(true);
+            try {
+                let response = await fetch('/dnd_blog/public/admin/autocomplete-media-picker?search=' + search);
+                return await response.json();
+            } catch (err) {
+                console.error(err);
+                // Handle errors here
+            }
+        }
+
+        function initToggleDropdown() {
+            block.querySelector('button').addEventListener('click', event => {
+                block.querySelector('.b').classList.toggle("d-none");
+            })
+
+            document.addEventListener('click', event => {
+                if (!block.contains(event.target)) {
+                    block.querySelector('.b').classList.add("d-none");
+                }
+            })
+        }
+
+        function initChoice() {
+            var inputFirstValue = document.querySelector('.' + document.getElementById(id).dataset.input);
+            var firstImageName = inputFirstValue.value;
+            var firstValue = document.getElementById(id).value;
+            // var firstImg = block.querySelector('img[data-value="' + firstValue + '"]');
+            var firstImg = '<img class="w-100" src="' + path + firstImageName + '" data-value="' + firstValue + '"/>';
+
+            block.querySelector('button').innerHTML = firstImageName;
+            block.querySelector('.image-selected').innerHTML = firstImg;
+        }
+
+        function onClickMedia() {
+            block.querySelectorAll('.a li').forEach(item => {
+                item.addEventListener('click', event => {
+                    var element = event.target;
+                    var img = element.src;
+                    var value = element.dataset.value;
+                    var fileName = img.split('/').slice(-1);
+                    var item = '<img class="w-100" src="' + img + '" />';
+
+                    document.getElementById(id).value = value;
+                    block.querySelector('.b').classList.toggle("d-none");
+                    block.querySelector('.image-selected').innerHTML = item;
+                    block.querySelector('button').innerHTML = fileName;
+                })
+            })
+        }
+
+
+    </script>
+{% endblock %}

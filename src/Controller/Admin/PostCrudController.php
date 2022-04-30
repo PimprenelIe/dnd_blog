@@ -5,8 +5,14 @@ namespace App\Controller\Admin;
 use App\Entity\Blog\Category;
 use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
+use App\Entity\Media\Media;
+use App\Field\GoogleViewField;
 use App\Field\HelpSeoField;
+use App\Field\ImageChoiceField;
 use App\Field\VichImageField;
+use App\Form\ChooseMediaType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -26,17 +32,19 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
+    public function configureAssets(Assets $assets): Assets
+    {
+        return parent::configureAssets($assets)
+            ->addJsFile('javascript/admin/help_seo.js');
+    }
+
 
     public function configureFields(string $pageName): iterable
     {
         return [
             FormField::addTab('Détails'),
             FormField::addPanel(false)->addCssClass('col-xl-9'),
-            TextField::new('title', 'Titre')->setColumns(6),
-            SlugField::new('slug')
-                ->setTargetFieldName('title')
-                ->setColumns(6)
-                ->hideOnIndex(),
+            TextField::new('title', 'Titre')->setColumns(12),
             TextEditorField::new('abstract')
                 ->setColumns(12)
                 ->setFormType(CKEditorType::class)
@@ -44,7 +52,10 @@ class PostCrudController extends AbstractCrudController
             TextEditorField::new('content')
                 ->setColumns(12)
                 ->setFormType(CKEditorType::class)
-                ->setFormTypeOption('config', array('height' => '100vh'))
+                ->setFormTypeOption('config', array(
+                    'height' => '100vh',
+                ))
+
                 ->hideOnIndex(),
 
             FormField::addPanel(false)->addCssClass('col-xl-3'),
@@ -89,16 +100,31 @@ class PostCrudController extends AbstractCrudController
                 })
                 ->setColumns(12),
 
+
+            ImageChoiceField::new('imageTitle', 'Image Titre')
+                ->setFormTypeOption('attr', ['data-input' => 'imageTitle_fileName'])
+                ->setColumns(12)
+                ->onlyOnForms(),
+            TextField::new('imageTitle.fileName')
+                ->setFormTypeOption('attr', ['class' => 'imageTitle_fileName'])
+                ->setFormTypeOption('row_attr', ['class' => 'd-none'])
+                ->setDisabled(true),
+
+
             FormField::addPanel(false)->addCssClass('col-xl-12'),
             TextField::new('keywordSeo')->onlyOnForms(),
             HelpSeoField::new('helpSeo', 'Score SEO'),
 
 
             FormField::addTab('SEO'),
-            TextField::new('metaTitle')->hideOnIndex(),
-            TextField::new('metaDescription')->hideOnIndex(),
-//            VichImageField::new('imageTitle.fileName')->hideOnForm(),
-//            VichImageField::new('imageTitle.file')->onlyOnForms(),
+            SlugField::new('slug')
+                ->setTargetFieldName('title')
+                ->setColumns(12)
+                ->hideOnIndex(),
+            TextField::new('metaTitle')->setColumns(12)->hideOnIndex(),
+            TextField::new('metaDescription')->setColumns(12)->hideOnIndex(),
+            GoogleViewField::new('googleView', false)->setColumns(12)->hideOnIndex(),
+
 
             FormField::addTab('Commentaires'),
             CollectionField::new('comments')

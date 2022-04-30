@@ -21,7 +21,11 @@ final class VichImageField implements FieldInterface
             // this is used in 'edit' and 'new' pages to edit the field contents
             // you can use your own form types too
             ->setFormType(VichImageType::class)
-            ->addCssClass('field-vich-image')
-            ;
+            ->setFormTypeOption('download_uri', static function ($photo, $resolvedUri) {
+                return '/dnd_blog/public'.$resolvedUri;
+            })
+            ->setFormTypeOption('delete_label', 'Supprimer ?')
+            ->addCssClass('field-vich-image');
     }
+
 }

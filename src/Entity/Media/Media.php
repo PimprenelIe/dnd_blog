@@ -3,15 +3,14 @@
 namespace App\Entity\Media;
 
 use App\Entity\Blog\Post;
-use App\Entity\User;
 use App\Helper\Timestampable;
 use App\Repository\Media\MediaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[Vich\Uploadable]
@@ -25,12 +24,17 @@ class Media
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
-    #[Vich\UploadableField(mapping: 'media', fileNameProperty: 'fileName')]
-    private ?File $file;
+    #[Vich\UploadableField(
+        mapping: 'media',
+        fileNameProperty: 'fileName',
+        mimeType: 'mimeType',
+        originalName: 'originalName'
+    )]
+    private ?File $file = null;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Length(max: 255)]
-    private ?string $fileName;
+    private ?string $fileName = null;
 
     #[ORM\Column(type: 'string', length: 30)]
     #[Assert\Length(max: 30)]
@@ -52,8 +56,13 @@ class Media
     #[Assert\Length(max: 255)]
     private ?string $alt;
 
-    #[ORM\OneToMany(mappedBy: 'imageTitle', targetEntity: Post::class)]
-    private ArrayCollection $posts;
+    #[ORM\OneToMany(mappedBy: 'imageTitle', cascade: ['persist'], targetEntity: Post::class)]
+    private $posts;
+
+    public function __toString(): string
+    {
+        return $this->fileName ?? 'file ' . $this->id;
+    }
 
     public function __construct()
     {
@@ -70,13 +79,13 @@ class Media
         return $this->file;
     }
 
-    public function setFile(?File $file): self
+    public function setFile(?File $file = null): self
     {
         $this->file = $file;
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
         if ($file) {
-            $this->updatedAt = new \DateTime('now');
+            $this->updatedAt = new \DateTimeImmutable();
         }
         return $this;
     }

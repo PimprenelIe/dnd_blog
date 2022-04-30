@@ -1,11 +1,28 @@
 {% block help_seo_widget %}
+    <style>
+        .help_seo .spinner-container {
+            margin: auto 0 auto 10px;
+        }
+        .help_seo .spinner-border {
+            height: 20px;
+            width: 20px;
+        }
+    </style>
 
     <div class="d-none">
         {%- set type = type|default('number') -%}
         {{ block('form_widget_simple') }}
     </div>
 
-    <h2>Analysis</h2>
+    <div class="d-flex help_seo">
+        <h2>Analysis</h2>
+
+        <div class="spinner-container d-none">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     <div id="redLevel">
         <p class="nbWords red">

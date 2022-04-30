@@ -11,28 +11,98 @@ let idSlug = 'Post_slug';
 document.addEventListener('DOMContentLoaded', function () {
 
     let elementKeywordSeo = document.getElementById(idKeywordSeo);
+    let elementTitle = document.getElementById(idTitle);
+    let elementContent = document.getElementById(idContent);
+    let elementMetaTitle = document.getElementById(idMetaTitle);
+    let elementMetaDescription = document.getElementById(idMetaDescription);
+    let elementSlug = document.getElementById(idSlug);
+
+
+
     keyword = elementKeywordSeo.value;
 
     update();
 
     ['keyup', 'paste', 'change'].forEach(function (e) {
         elementKeywordSeo.addEventListener(e, onChange);
+        elementTitle.addEventListener(e, onChange);
+        elementContent.addEventListener(e, onChange);
+        elementMetaTitle.addEventListener(e, onChange);
+        elementMetaDescription.addEventListener(e, onChange);
+        elementSlug.addEventListener(e, onChange);
+
+        CKEDITOR.instances[idContent].on('key', function() {
+            update();
+        })
     });
+
 
 }, false);
 
-
-function onChange(e){
-    keyword = e.target.value;
-    update();
+function spinnerHelpSeo($isOn) {
+    if ($isOn) {
+        document.querySelector('.help_seo .spinner-container').classList.remove('d-none');
+    } else {
+        document.querySelector('.help_seo .spinner-container').classList.add('d-none');
+    }
 }
 
-function update() {
-    changeMessage(document.getElementById(idContent).value);
-    changeDescription(document.getElementById(idTitle).value);
-    changeTitreMeta(document.getElementById(idMetaTitle).value);
-    changeSlug(document.getElementById(idSlug).value);
-    changeAbstract(document.getElementById(idMetaDescription).value);
+function onChange(e) {
+    keyword = e.target.value;
+    update(e.target.id);
+}
+
+function update($type = idKeywordSeo) {
+    console.log('upadte');
+    spinnerHelpSeo(true);
+
+    switch ($type) {
+
+        case idKeywordSeo:
+            /**
+             * Modification du mot clef
+             */
+            changeMessage(document.getElementById(idContent).value);
+            changeDescription(document.getElementById(idTitle).value);
+            changeTitreMeta(document.getElementById(idMetaTitle).value);
+            changeSlug(document.getElementById(idSlug).value);
+            changeAbstract(document.getElementById(idMetaDescription).value);
+            break;
+        case idTitle:
+            /**
+             * Modification du titre de l'article
+             */
+            changeDescription(document.getElementById(idTitle).value);
+            break;
+        case idContent:
+            /**
+             * Modification du texte principal
+             */
+            changeMessage(document.getElementById(idContent).value);
+            break;
+        case idMetaTitle:
+            /**
+             * Modification du meta titre de l'article
+             */
+            changeTitreMeta(document.getElementById(idMetaTitle).value);
+            break;
+        case idMetaDescription:
+            /**
+             * Modification de la meta description
+             */
+            changeAbstract(document.getElementById(idMetaDescription).value);
+            break;
+        case idSlug:
+            /**
+             * Modification du slug
+             */
+            changeSlug(document.getElementById(idSlug).value);
+            break;
+        default:
+            changeMessage(document.getElementById(idContent).value);
+            break;
+    }
+
 
     if (document.querySelectorAll('.red:not(.d-none)').length > 0) {
         document.getElementById('Post_helpSeo').value = 0;
@@ -42,6 +112,13 @@ function update() {
         document.getElementById('Post_helpSeo').value = 2;
     }
 
+    sleep(500).then(() => {
+        spinnerHelpSeo(false);
+    });
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function changeMessage($content) {
@@ -60,108 +137,44 @@ function changeMessage($content) {
     keywordDensity($content);
 }
 
-
-//
-//
-// document.querySelector(document).ready(function () {
-//
-//     // keyword = document.querySelector('#Post_keywordSeo').val();
-//     document.querySelector('#Post_keywordSeo').on("keyup paste change", function () {
-//         keyword = document.querySelector(this).val();
-//         changeMessage(document.querySelector('#Post_content').val());
-//         changeDescription(document.querySelector('#Post_title').val());
-//         changetitreMeta(document.querySelector('#Post_metaTitle').val());
-//         changeSlug(document.querySelector('#Post_slug').val());
-//         changeAbstract(document.querySelector('#Post_metaDescription').val());
-//     })
-//
-//     /**
-//      * Modification du texte principal
-//      */
-//     changeMessage(document.querySelector('#Post_content').innerHTML);
-//     document.querySelector('#Post_content').on('change keyup paste', function () {
-//         changeMessage(document.querySelector(this).innerHtml);
-//     });
-//
-//
-//     // changeMessage(CKEDITOR.instances["Post_content"].getData());
-//     //
-//     // CKEDITOR.instances["Post_content"].on('change', function() {
-//     //     changeMessage(CKEDITOR.instances["Post_content"].getData());
-//     // });
-//
-//
-//     /**
-//      * Modification du titre de l'article
-//      */
-//     changeDescription(document.querySelector('#Post_title').val());
-//     document.querySelector('#Post_title').on('change keyup paste', function () {
-//         changeDescription(document.querySelector(this).val());
-//     });
-//
-//     /**
-//      * Modification du meta titre de l'article
-//      */
-//     changetitreMeta(document.querySelector('#Post_metaTitle').val());
-//     document.querySelector('#Post_metaTitle').on('change keyup paste', function () {
-//         changetitreMeta(document.querySelector(this).val());
-//     });
-//
-//     /**
-//      * Modification du slug
-//      */
-//     changeSlug(document.querySelector('#Post_slug').val());
-//     document.querySelector('#Post_slug').on('change keyup paste', function () {
-//         changeSlug(document.querySelector(this).val());
-//     });
-//
-//     /**
-//      * Modification de la meta description
-//      */
-//     changeAbstract(document.querySelector('#Post_metaDescription').val());
-//     document.querySelector('#Post_metaDescription').on('change keyup paste', function () {
-//         changeAbstract(document.querySelector(this).val());
-//     });
-//
-// });
-//
-
 function changeDescription($val) {
     keywordIn($val.toLowerCase(), "keywordTitle");
 }
 
 function changeTitreMeta($val) {
-    // if ($val.length < 1) {
-    //     document.querySelector('.results .titre').innerHTML = "Meta-titre sinon titre de mon article par défaut";
-    // } else {
-    //     document.querySelector('.results .titre').innerHTML = $val;
-    // }
+    if ($val.length < 1) {
+        document.querySelector('.google_view_titre').innerHTML = "Meta-titre sinon titre de mon article par défaut";
+    } else {
+        document.querySelector('.google_view_titre').innerHTML = $val;
+    }
     meta($val.toLowerCase(), "titreMeta");
 }
 
 function changeSlug($val) {
     let $slug = $val;
-    // if ($slug.length < 1) {
-    //     document.querySelector('.results .slug').innerHTML = " › actualites › url-de-mon-article...";
-    // } else {
-    //
-    //     $slug = '/actualites/' + $slug;
-    //     $slug = $slug.replaceAll("/", ' > ');
-    //     if ($slug.length > 40) {
-    //         $slug = $slug.substr(0, 40) + "...";
-    //     } else {
-    //         $slug = $slug.substr(0, 40);
-    //     }
-    //     document.querySelector('.results .slug').innerHTML = $slug;
-    // }
 
     keywordInSlug($slug, "slug");
+
+    if ($slug.length < 1) {
+        document.querySelector('.google_view_slug').innerHTML = " › posts › url-de-mon-article...";
+    } else {
+
+        $slug = '/posts/' + $slug;
+        $slug = $slug.replaceAll("/", ' > ');
+        if ($slug.length > 40) {
+            $slug = $slug.substr(0, 40) + "...";
+        } else {
+            $slug = $slug.substr(0, 40);
+        }
+        document.querySelector('.google_view_slug').innerHTML = $slug;
+    }
+
 }
 
 function changeAbstract($val) {
     let $abstract = $val;
     if ($abstract.length < 1) {
-        $abstract = "<em>Meta-description sinon :</em> Site officiel de la <strong>SPA</strong> de <strong>Strasbourg</strong>. Adopter un animal est une responsabilité.";
+        $abstract = "<em>Meta-description par défaut</em>";
         meta("", "descriptionMeta");
 
     } else {
@@ -172,7 +185,7 @@ function changeAbstract($val) {
         }
         meta($abstract.toLowerCase(), "descriptionMeta");
     }
-    // document.querySelector('.results .description').innerHTML = $abstract;
+    document.querySelector('.google_view_description').innerHTML = $abstract;
 }
 
 
@@ -297,6 +310,12 @@ function keywordIn($content, $class) {
 }
 
 function keywordInSlug($content, $class) {
+
+
+    console.log($class);
+    console.log($content);
+    console.log(keyword);
+
     if ($content.length > 0 && keyword.length > 3 && $content.toLowerCase().includes(keyword)) {
         document.querySelector('.' + $class + '.orange').classList.add('d-none');
         document.querySelector('.' + $class + '.green').classList.remove('d-none');

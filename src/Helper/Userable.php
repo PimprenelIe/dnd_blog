@@ -14,10 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
 trait Userable
 {
     #[ORM\ManyToOne(targetEntity: User::class)]
-    private ?User $createdBy;
+    protected ?User $createdBy;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
-    private ?User $updatedBy;
+    protected ?User $updatedBy;
 
     public function getCreatedBy(): ?User
     {

@@ -3,6 +3,7 @@
 namespace App\Entity\Blog;
 
 use App\Entity\Media\Media;
+use App\Entity\Page\PageContent;
 use App\Helper\Timestampable;
 use App\Helper\Userable;
 use App\Repository\Blog\PostRepository;
@@ -12,10 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Post
+class Post extends PageContent
 {
     use Timestampable;
     use Userable;
+
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,44 +30,24 @@ class Post
     #[ORM\Column(type: 'text')]
     private ?string $abstract;
 
-    #[ORM\Column(type: 'text')]
-    private ?string $content;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private ?string $slug;
-
     #[ORM\Column(type: 'boolean')]
     private bool $active = false;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $publishedAt;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $visit = 0;
-
-    #[ORM\Column(type: 'string', length: 70, nullable: true)]
-    private ?string $metaTitle;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $metaDescription;
-
-    #[ORM\Column(type: 'string', length: 30, nullable: true)]
-    private ?string $keywordSeo;
-
-    #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'posts')]
+    #[ORM\ManyToOne(targetEntity: Media::class, cascade: ['persist'], inversedBy: 'posts')]
     private ?Media $imageTitle;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'posts')]
-    private $categories;
+    private  $categories;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
-    private $comments;
+    private  $comments;
 
     #[ORM\ManyToMany(targetEntity: Keyword::class, inversedBy: 'posts')]
-    private $keywords;
+    private  $keywords;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $helpSeo;
 
     public function __construct()
     {
@@ -103,30 +85,6 @@ class Post
         return $this;
     }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getActive(): ?bool
     {
         return $this->active;
@@ -147,54 +105,6 @@ class Post
     public function setPublishedAt(?\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
-
-        return $this;
-    }
-
-    public function getVisit(): ?int
-    {
-        return $this->visit;
-    }
-
-    public function setVisit(?int $visit): self
-    {
-        $this->visit = $visit;
-
-        return $this;
-    }
-
-    public function getMetaTitle(): ?string
-    {
-        return $this->metaTitle;
-    }
-
-    public function setMetaTitle(?string $metaTitle): self
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
-
-    public function getMetaDescription(): ?string
-    {
-        return $this->metaDescription;
-    }
-
-    public function setMetaDescription(?string $metaDescription): self
-    {
-        $this->metaDescription = $metaDescription;
-
-        return $this;
-    }
-
-    public function getKeywordSeo(): ?string
-    {
-        return $this->keywordSeo;
-    }
-
-    public function setKeywordSeo(?string $keywordSeo): self
-    {
-        $this->keywordSeo = $keywordSeo;
 
         return $this;
     }
@@ -289,15 +199,5 @@ class Post
         return $this;
     }
 
-    public function getHelpSeo(): ?int
-    {
-        return $this->helpSeo;
-    }
 
-    public function setHelpSeo(?int $helpSeo): self
-    {
-        $this->helpSeo = $helpSeo;
-
-        return $this;
-    }
 }

@@ -2,27 +2,26 @@
 
 namespace App\Entity\Blog;
 
+use App\Entity\Page\PageContent;
 use App\Repository\Blog\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+class Category extends PageContent
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $slug;
+    private ?string $name;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'categories')]
-    private $posts;
+    private  $posts;
 
     public function __construct()
     {
@@ -30,7 +29,7 @@ class Category
     }
 
     public function __toString(){
-        return $this->name;
+        return $this->name ?? 'Category '.$this->id;
     }
 
     public function countPosts(): int
@@ -51,18 +50,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }

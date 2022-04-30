@@ -5,12 +5,12 @@ namespace App\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
 
-final class HelpSeoField implements FieldInterface
+final class GoogleViewField implements FieldInterface
 {
     use FieldTrait;
 
     /**
-     * @required'javascript/admin/help_seo.js'
+     * @required HelpSeoField
      *
      * @param string $propertyName
      * @param false $label
@@ -21,8 +21,7 @@ final class HelpSeoField implements FieldInterface
         return (new self())
             ->setProperty($propertyName)
             ->setLabel($label)
-            ->setTemplatePath('admin/field/help_seo.html.twig')
-            ->setFormTypeOption('block_prefix', 'help_seo')
-            ;
+            ->setTemplatePath('admin/field/google_view.html.twig')
+            ->setFormTypeOption('block_prefix', 'google_view');
     }
 }

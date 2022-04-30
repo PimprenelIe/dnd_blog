@@ -2,6 +2,7 @@
 
 namespace App\Entity\Blog;
 
+use App\Entity\Page\PageContent;
 use App\Repository\Blog\KeywordRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 
 #[ORM\Entity(repositoryClass: KeywordRepository::class)]
-class Keyword
+class Keyword extends PageContent
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,9 +19,6 @@ class Keyword
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $keyword;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private ?string $slug;
 
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'keywords')]
     private $posts;
@@ -52,18 +50,6 @@ class Keyword
     public function setKeyword(string $keyword): self
     {
         $this->keyword = $keyword;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }

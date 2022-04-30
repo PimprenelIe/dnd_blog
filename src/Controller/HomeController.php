@@ -16,8 +16,6 @@ class HomeController extends AbstractController
      */
     public function number(): Response
     {
-
-
         return new Response(
             '<html><body>Lucky number</body></html>'
         );
