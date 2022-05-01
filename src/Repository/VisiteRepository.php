@@ -47,32 +47,31 @@ class VisiteRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Visite[] Returns an array of Visite objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function findNbVisiteLastDays(int $days = 7){
+        /**
+        SELECT COUNT(id), DATE_FORMAT(date, '%Y-%m-%d') as dateFormat
+        FROM visite
+        WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
+        GROUP BY DATE_FORMAT(date, '%Y-%m-%d')
+        ORDER BY dateFormat  DESC;
+         */
+        $days = $days - 1;
 
-    /*
-    public function findOneBySomeField($value): ?Visite
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $now = new \DateTime("+1 days");
+        $previous = new \DateTime("-$days days");
+
+        dump($previous->format('Y-m-d'));
+            dump($now->format('Y-m-d'));
+
+        return $this->createQueryBuilder('visit')
+            ->select("count(visit.id) as nbVisit, DATE_FORMAT(visit.date, '%Y-%m-%d') as dateFormat")
+            ->andWhere("visit.date BETWEEN :begin AND :end")
+            ->setParameter('begin', $previous->format('Y-m-d'))
+            ->setParameter('end', $now->format('Y-m-d'))
+            ->groupBy("dateFormat")
+            ->orderBy('dateFormat', 'DESC')
+            ->getQuery()->getResult();
     }
-    */
+
+
 }

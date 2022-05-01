@@ -9,6 +9,7 @@ use App\Entity\Blog\Post;
 use App\Entity\Media\Media;
 use App\Entity\Page\Page;
 use App\Entity\User;
+use App\Entity\Visite;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -39,10 +40,12 @@ class DashboardController extends AbstractDashboardController
         $lastPosts = $this->entityManager->getRepository(Post::class)
             ->findBy([], ['createdAt' => "DESC"], 3);
 
+        $statsVisites = $this->entityManager->getRepository(Visite::class)
+            ->findNbVisiteLastDays();
+
 
         return $this->render('admin/dashboard.html.twig');
     }
-
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -61,7 +64,7 @@ class DashboardController extends AbstractDashboardController
     public function configureAssets(): Assets
     {
         return parent::configureAssets()
-            ->addCssFile('css/admin/google_view.css')
+            ->addCssFile('styles/admin/google_view.css')
             ;
     }
 
