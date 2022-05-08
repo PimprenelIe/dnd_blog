@@ -60,9 +60,6 @@ class VisiteRepository extends ServiceEntityRepository
         $now = new \DateTime("+1 days");
         $previous = new \DateTime("-$days days");
 
-        dump($previous->format('Y-m-d'));
-            dump($now->format('Y-m-d'));
-
         return $this->createQueryBuilder('visit')
             ->select("count(visit.id) as nbVisit, DATE_FORMAT(visit.date, '%Y-%m-%d') as dateFormat")
             ->andWhere("visit.date BETWEEN :begin AND :end")

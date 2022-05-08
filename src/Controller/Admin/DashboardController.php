@@ -64,7 +64,7 @@ class DashboardController extends AbstractDashboardController
     public function configureAssets(): Assets
     {
         return parent::configureAssets()
-            ->addCssFile('styles/admin/google_view.css')
+            ->addWebpackEncoreEntry('admin_google_view')
             ;
     }
 

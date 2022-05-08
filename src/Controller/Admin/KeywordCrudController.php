@@ -24,7 +24,7 @@ class KeywordCrudController extends AbstractCrudController
     public function configureAssets(Assets $assets): Assets
     {
         return parent::configureAssets($assets)
-            ->addJsFile('javascript/admin/help_seo.js');
+            ->addWebpackEncoreEntry('admin_help_seo');
     }
 
     public function configureFields(string $pageName): iterable

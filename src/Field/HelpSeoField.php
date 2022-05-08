@@ -10,7 +10,7 @@ final class HelpSeoField implements FieldInterface
     use FieldTrait;
 
     /**
-     * @required'javascript/admin/help_seo.js'
+     * @required'assets/javascript/admin/help_seo.js'
      *
      * @param string $propertyName
      * @param false $label
