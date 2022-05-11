@@ -13,5 +13,11 @@ import './styles/app.css';
 import './bootstrap';
 
 
+// import './javascript/theme/preloader';
+// import 'macy/dist/macy';
+import './javascript/theme/macy.js';
+
+
+
 // require('@fortawesome/fontawesome-free/css/all.css');
 // require('@fortawesome/fontawesome-free/js/all.js');

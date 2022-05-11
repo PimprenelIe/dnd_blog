@@ -10,7 +10,7 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
-    .setPublicPath('build')
+    .setPublicPath('/dnd_blog/public/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -24,6 +24,8 @@ Encore
     // .addEntry('font-awesome', './assets/lib/fontawesome-free/css/all.min.css')
     .addEntry('admin_help_seo', './assets/javascript/admin/help_seo.js')
 
+
+    .addStyleEntry('theme', './assets/styles/theme/style.css')
     .addStyleEntry('admin_login', './assets/styles/admin/login.css')
     .addStyleEntry('admin_google_view', './assets/styles/admin/google_view.css')
 

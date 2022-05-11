@@ -1,20 +1,112 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" type="text/css">
-            {{ encore_entry_link_tags('app') }}
-{#            {{ encore_entry_link_tags('font-awesome') }}#}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" type="text/css">
+        {{ encore_entry_link_tags('theme') }}
+        {{ encore_entry_link_tags('app') }}
+        {# {{ encore_entry_link_tags('font-awesome') }} #}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+<!-- preloader -->
+{#<div class="preloader">#}
+{#    <div class="loader">#}
+{#        <span class="dot"></span>#}
+{#        <div class="dots">#}
+{#            <span></span>#}
+{#            <span></span>#}
+{#            <span></span>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+<!-- /preloader -->
+
+<header class="navigation container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ path('home') }}"><img class="img-fluid" src="images/logo.png" alt="parsa"></a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+{#        <div class="collapse navbar-collapse text-center" id="navogation">#}
+{#            <ul class="navbar-nav ms-auto">#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown"#}
+{#                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                        Home#}
+{#                    </a>#}
+{#                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                        <a class="dropdown-item" href="index.html">Homepage 1</a>#}
+{#                        <a class="dropdown-item" href="homepage-2.html">Homepage 2</a>#}
+{#                    </div>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link text-uppercase text-dark" href="about.html">About</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link text-uppercase text-dark" href="contact.html">Contact</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#            <form class="form-inline position-relative ms-lg-4">#}
+{#                <input class="form-control px-0 w-100" type="search" placeholder="Search">#}
+{#                <!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->#}
+{#                <a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>#}
+{#            </form>#}
+{#        </div>#}
+    </nav>
+</header>
+
+
+{% for flash in app.session.flashBag.get('success') %}
+    <div class="alert alert-success">
+        {{ flash }}
+    </div>
+{% endfor %}
+
+
+{% block body %}{% endblock %}
+
+<footer class="bg-secondary">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 mb-4 mb-md-0">
+                    <a href="{{ path('home') }}"><img src="images/logo.png" alt="persa" class="img-fluid"></a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 mb-md-0">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'contact'}) }}" class="text-dark">Contact</a></li>
+                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'mentions-legales'}) }}" class="text-dark">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center pb-3 bg-black text-white pt-3">
+        <p class="mb-0">Copyright ©
+            <script>var CurrentYear = new Date().getFullYear()
+                document.write(CurrentYear)</script>
+        </p>
+    </div>
+</footer>
+</body>
 </html>

@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section>
+        <div class="container">
+
+                <div class="col-12">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a class="text-decoration-none"
+                                                           href="{{ path('home') }}">Logo</a></li>
+                            <li class="breadcrumb-item"><a class="text-decoration-none"
+                                                           href="{{ path('posts_category', {slug: post.categories.first.slug }) }}">{{ post.categories.first.title }}</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"><a
+                                        class="text-decoration-none text-muted"
+                                        href="{{ path('post_show', {slug: post.slug }) }}">{{ post.title }}</a></li>
+                        </ol>
+                    </nav>
+
+                    <h1>{{ post.title }}</h1>
+
+                    <div>
+
+                        <img class="author" src="" alt="{{ post.createdBy.name|default('Pimprenelle') }}">
+                        <div>
+                            par
+                            <span class="bold">{{ post.createdBy.name|default('Pimprenelle') }}</span>
+                        </div>
+
+                        <div class="article-posted-date">
+                            <time itemprop="datePublished">
+                                <abbr class="tip standard-date standard-datetime">{{ post.publishedAt|format_datetime(pattern="d MMM y", locale='fr') }}</abbr>
+                            </time>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="widget d-flex align-items-center">
+                        Mots-clés
+                        <ul class="list-inline tag-list mb-0">
+                            {% for keyword in post.keywords %}
+                                <li class="list-inline-item m-1"><a href="{{ path('posts_keyword', {slug: keyword.slug }) }}">{{ keyword.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="content">
+                        {{ post.content|raw }}
+                    </div>
+                </div>
+
+                <div class="col-12 widget d-flex justify-content-around">
+                    {% for featuredPost in featuredPosts %}
+                        <div class="media mb-4 d-flex">
+                            <div class="post-thumb-sm me-3">
+                                <img class="img-fluid" src="{{ asset('/upload/media/' ~ featuredPost.imageTitle.fileName)|imagine_filter('thumbnail') }}" alt="post-thumb">
+                            </div>
+                            <div class="media-body d-flex justify-content-center flex-column">
+                                <ul class="list-inline d-flex justify-content-between mb-2">
+                                    <li class="list-inline-item"><a class="text-decoration-none"
+                                                                    href="{{ path('posts_keyword', {slug: featuredPost.keywords.first.slug }) }}">{{ featuredPost.keywords.first.title }}</a></li>
+                                    <li class="list-inline-item">{{ post.publishedAt|format_datetime(pattern="d MMM y", locale='fr') }}</li>
+                                </ul>
+                                <h6><a class="text-dark" href="{{ path('post_show', {'slug': featuredPost.slug}) }}">{{ post.title }}</a>
+                                </h6>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if  post.createdBy.abstract is defined and post.createdBy.abstract is not empty %}
+                    <div class="col-12 widget author-presentation">
+                        {{ post.createdBy.abstract }}
+                    </div>
+                {% endif %}
+
+
+
+                <div class="widget d-flex align-items-center">
+                    Mots-clés
+                    <ul class="list-inline tag-list mb-0">
+                        {% for keyword in post.keywords %}
+                            <li class="list-inline-item m-1"><a href="{{ path('posts_keyword', {slug: keyword.slug }) }}">{{ keyword.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+            <!-- blog commentaires -->
+            <div>
+
+            </div>
+            <!-- /blog commentaires -->
+
+        </div>
+    </section>
+{% endblock %}

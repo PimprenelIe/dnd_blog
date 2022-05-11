@@ -1,18 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Bonjour !</p>
+    <!-- featured post -->
+    <section>
+        <div class="container-fluid p-sm-0">
+            <div class="row featured-post-slider">
+                {% for post in lastPosts %}
+                    <div class="col-lg-3 col-sm-6 mb-2 mb-lg-0 px-1">
+                        <article class="card bg-dark text-center text-white border-0 rounded-0">
+                            <img class="card-img rounded-0 img-fluid w-100"
+                                 src="{{ asset('/upload/media/' ~ post.imageTitle.fileName)|imagine_filter('first_page') }}"
+                                 alt="post-thumb">
+                            <a class="card-img-overlay" href="{{ path('post_show', {'slug': post.slug}) }}"></a>
+                            <div class="card-content">
+                                <p class="text-uppercase">{{ post.categories.first.title }}</p>
+                                <h4 class="card-title mb-4"><a class="text-white"
+                                                               href="{{ path('post_show', {'slug': post.slug}) }}">{{ post.title }}</a>
+                                </h4>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- /featured post -->
 
-    <div data-controller="counter">
-        <button
-                data-action="counter#increment"
-                class="btn btn-primary btn-sm">
-            Click me!
-        </button>
-        <br>
+{#    <!-- hero area -->#}
+{#    <section class="hero-section">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-6 align-self-end">#}
+{#                    <h1 class="mb-0">Welcome</h1>#}
+{#                    <h2 class="mb-100 title-border-lg">to <i>Jhon Abraham Blog</i></h2>#}
+{#                    <p class="mb-80 mr-5">I’m a Freelance Interactive Art Director based in France. Focusing across branding and#}
+{#                        identity, digital and#}
+{#                        print.</p>#}
+{#                    <span class="font-secondary text-dark mr-3 mr-sm-5">Follow</span>#}
+{#                    <ul class="list-inline d-inline-block mb-5">#}
+{#                        <li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-facebook"></i></a></li>#}
+{#                        <li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-twitter-alt"></i></a></li>#}
+{#                        <li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-linkedin"></i></a></li>#}
+{#                        <li class="list-inline-item mx-3"><a href="#" class="text-dark"><i class="ti-github"></i></a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-lg-6 text-right">#}
+{#                    <img class="img-fluid" src="images/banner-img.png" alt="banner-image">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!-- /hero area -->#}
 
-        I have been clicked
-        <span data-counter-target="count">0</span>
-        times!
-    </div>
+    <!-- blog post -->
+    {% include 'post/_list_layout.html.twig' %}
+    <!-- /blog post -->
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+    {{ parent() }}
 {% endblock %}

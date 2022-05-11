@@ -20,7 +20,8 @@ doctrine:
                 date_format: DoctrineExtensions\Query\Mysql\DateFormat
                 datesub: DoctrineExtensions\Query\Mysql\DateSub
                 now: DoctrineExtensions\Query\Mysql\Now
-
+            numeric_functions:
+                rand: DoctrineExtensions\Query\Mysql\Rand
 when@test:
     doctrine:
         dbal:

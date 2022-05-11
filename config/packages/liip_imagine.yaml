@@ -8,7 +8,7 @@ liip_imagine:
         generate: true
     filter_sets :
         cache : ~
-        admin_thumbnail :
+        thumbnail :
             quality : 75
             filters :
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
@@ -18,3 +18,15 @@ liip_imagine:
             quality: 100
             filters:
                 scale: { dim: [ 600, 600 ] }
+        first_page:
+            quality: 100
+            filters:
+                scale: { dim: [ 473, 554 ] }
+        odd_page:
+            quality: 100
+            filters:
+                scale: { dim: [ 370, 400 ] }
+        even_page:
+            quality: 100
+            filters:
+                scale: { dim: [ 370, 250 ] }

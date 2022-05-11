@@ -2,11 +2,15 @@
 
 namespace App\Repository\Blog;
 
+use App\Entity\Blog\Category;
+use App\Entity\Blog\Keyword;
 use App\Entity\Blog\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\Date;
 
 /**
  * @extends ServiceEntityRepository<Post>
@@ -21,6 +25,82 @@ class PostRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+
+    public function featuredPosts(Post $post, int $limit = 3)
+    {
+        $qb = $this->createQueryBuilder('post')
+            ->where('post.id <> :post')
+            ->setParameter('post', $post)
+            ->orderBy('RAND()')
+            ->setMaxResults($limit);
+
+        $this->addConditions($qb);
+        return $qb ->getQuery()->getResult();
+    }
+
+    public function findWithDateBy(array $criteria, array $orderBy = null, $limit = null, $offset = null){
+
+        return $this->queryWithDateBy($criteria, $orderBy, $limit, $offset)
+            ->getQuery()->getResult();
+
+    }
+
+    public function queryWithDateBy(array $criteria, array $orderBy = null, $limit = null, $offset = null){
+        $qb =  $this->createQueryBuilder('post');
+
+        $this->addConditions($qb);
+
+        if(!empty($criteria)){
+            foreach($criteria as $criterion => $value){
+                    $qb->andWhere("post.".$criterion." = '".$value."'");
+            }
+        }
+
+        if(!empty($orderBy)){
+            foreach($orderBy as $key => $value){
+                $qb->addOrderBy("post.".$key,$value);
+            }
+        }
+
+        if(!empty($limit)){
+            $qb->setMaxResults($limit);
+        }
+        if(!empty($offset)){
+            $qb->setFirstResult($offset);
+        }
+
+        return $qb;
+    }
+
+    public function findByCategory(Category $category){
+        return $this->queryByCategory($category)
+            ->getQuery()->getResult();
+    }
+
+    public function queryByCategory(Category $category){
+        $qb = $this->createQueryBuilder('post')
+            ->innerJoin('post.categories', 'category')
+            ->where('category.id IN (:category)')
+            ->setParameters(array('category' => $category));
+        $this->addConditions($qb);
+        return $qb;
+    }
+
+    public function findByKeyword(Keyword $keyword){
+        return $this->queryByKeyword($keyword)
+            ->getQuery()->getResult();
+    }
+
+    public function queryByKeyword(Keyword $keyword){
+       $qb = $this->createQueryBuilder('post')
+            ->innerJoin('post.keywords', 'keyword')
+            ->where('keyword.id IN (:keyword)')
+            ->setParameters(array('keyword' => $keyword))
+            ;
+        $this->addConditions($qb);
+       return $qb;
     }
 
     /**
@@ -47,32 +127,11 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Post
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    private function addConditions(QueryBuilder $queryBuilder){
+        $queryBuilder->andWhere('post.publishedAt < :date')
+            ->setParameter('date', new \DateTime());
+
     }
-    */
+
 }

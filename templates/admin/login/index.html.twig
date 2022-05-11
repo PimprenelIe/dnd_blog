@@ -1,6 +1,21 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Connexion à l'administration{% endblock %}</title>
 
-{% block body %}
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" type="text/css">
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('admin_login') }}
+    {% endblock %}
+</head>
+<body>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-2"></div>
@@ -32,7 +47,7 @@
                                            value="{{ last_username }}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="password">Password:</label>
+                                    <label class="form-control-label" for="password">Mot de passe:</label>
                                     <input class="form-control" type="password" id="password" name="_password"/>
                                 </div>
 
@@ -41,13 +56,13 @@
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                                 <div class="col-lg-12 loginbttm">
-                                    <div class="col-lg-6 login-btm login-text">
+                                    <div class="col-lg-6 login-text">
                                         {% if error %}
                                             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                         {% endif %}
                                     </div>
-                                    <div class="col-lg-6 login-btm login-button">
-                                        <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                    <div class="login-button">
+                                        <button type="submit" class="mx-auto btn btn-outline-primary">Se Connecter</button>
                                     </div>
                                 </div>
                             </form>
@@ -58,9 +73,5 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('admin_login') }}
-{% endblock %}
+</body>
+</html>
