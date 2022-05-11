@@ -14,8 +14,8 @@
         </a>
 
         <div id="{{ html_id }}" class="ea-lightbox">
-{#            <img src="{{ vich_uploader_asset(entity.instance, field.property ~ 'File', entity.fqcn)|imagine_filter('admin_full') }}"#}
-            <img src="{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn)|imagine_filter('admin_full') }}"
+{#            <img src="{{ vich_uploader_asset(entity.instance, field.property ~ 'File', entity.fqcn)|imagine_filter('full') }}"#}
+            <img src="{{ vich_uploader_asset(entity.instance, 'file', entity.fqcn)|imagine_filter('full') }}"
                  alt="{{ entity.name }}">
         </div>
     {% endif %}

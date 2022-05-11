@@ -1,27 +1,39 @@
 <section class="section">
     <div class="container">
-        <div class="row macy-container">
-            {% for post in posts %}
-                {% if loop.index is odd %}
-                    {% set filter = 'odd_page' %}
-                {% else %}
-                    {% set filter = 'even_page' %}
-                {% endif %}
-                <div class="col-lg-4 col-sm-6 mb-5">
-                    <article class="text-center">
-                        <a class="img-overlay" href="{{ path('post_show', {'slug': post.slug}) }}"></a>
-                        <img class="img-fluid mb-4" src="{{ asset('/upload/media/' ~ post.imageTitle.fileName)|imagine_filter(filter) }}" alt="post-thumb">
-                        <p class="text-uppercase mb-2">{{ post.categories.first.title }}</p>
-                        <h4 class="title-border"><a class="text-dark text-decoration-none" href="{{ path('post_show', {'slug': post.slug}) }}">{{ post.title }}</a></h4>
-                        <p>{{ post.abstract|raw }}</p>
-                    </article>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-12">
-                {{ knp_pagination_render(posts) }}
+        {% if posts.items|length > 0 %}
+            <div class="row macy-container">
+                {% for post in posts %}
+                    {% if loop.index is odd %}
+                        {% set filter = 'odd_page' %}
+                    {% else %}
+                        {% set filter = 'even_page' %}
+                    {% endif %}
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <article class="text-center">
+                            <a class="img-overlay" href="{{ path('post_show', {'slug': post.slug}) }}"></a>
+                            <img class="img-fluid mb-4"
+                                 src="{{ asset('/upload/media/' ~ post.imageTitle.fileName)|imagine_filter(filter) }}"
+                                 alt="post-thumb">
+                            <p class="text-uppercase mb-2">{{ post.categories.first.title }}</p>
+                            <h4 class="title-border"><a class="text-dark text-decoration-none"
+                                                        href="{{ path('post_show', {'slug': post.slug}) }}">{{ post.title }}</a>
+                            </h4>
+                            <p>{{ post.abstract|raw }}</p>
+                        </article>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
+            <div class="row">
+                <div class="col-12 d-flex">
+                    {{ knp_pagination_render(posts) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="mx-auto">Aucun post :'(</div>
+            </div>
+        {% endif %}
+
+
     </div>
 </section>

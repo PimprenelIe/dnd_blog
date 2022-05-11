@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{#{% block image %}{{ absolute_url(asset('')) }}{% endblock %}#}
+
 {% block body %}
     <!-- featured post -->
     <section>
@@ -58,6 +60,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/macy@2" defer=""></script>
     {{ parent() }}
 {% endblock %}

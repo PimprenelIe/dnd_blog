@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ post.metaTitle }}{% endblock %}
+{% block meta_description %}{{ stripHtmlTags(post.metaDescription) }}{% endblock %}
+{% block image %}{{ absolute_url(asset('/upload/media/' ~ post.imageTitle.fileName)|imagine_filter('full')) }}{% endblock %}
+
+
 {% block body %}
     <section>
         <div class="container">

@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% include "_head.html.twig" %}
 
-    <!-- mobile responsive meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    {% if block("title") is defined %}
+        {% set title = block('title')|default("Un Donjon de Caractère !") %}
+    {% else %}
+        {% set title = "Un Donjon de Caractère !" %}
+    {% endif %}
+
+    {% if block("meta_description") is defined %}
+        {% set meta_description = block('meta_description')|default("Des personnages de Donjons et Dragons originaux à jouer pendant vos campagnes endiablées.") %}
+    {% else %}
+        {% set meta_description = "Des personnages de Donjons et Dragons originaux à jouer pendant vos campagnes endiablées." %}
+    {% endif %}
+
+    {% if block("image") is defined %}
+        {% set image = block('image')|default(absolute_url(asset("/img/site/logo.jpg"))) %}
+    {% else %}
+        {% set image = absolute_url(asset("/img/site/logo.jpg")) %}
+    {% endif %}
+
+
+    <title>{{ title }}</title>
+    <meta name="Description" content="{{ meta_description }}">
+
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ meta_description }}">
+    <meta name="twitter:image" content="{{ image }}">
+
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ meta_description }}" />
+    <meta property="og:image" content="{{ image }}" />
+    <meta property="og:url" content="{{ absolute_url(path(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params'))) }}" />
+    <meta property="og:type" content="website" />
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" type="text/css">

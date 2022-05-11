@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}{{ page.metaTitle }}{% endblock %}
+{% block meta_description %}{{ stripHtmlTags(page.metaDescription) }}{% endblock %}
+{% block image %}
+    {% if posts.items|length > 0 %}
+        {{ absolute_url(asset('/upload/media/' ~ posts.items.0.imageTitle.fileName)|imagine_filter('full')) }}
+    {% endif %}
+{% endblock %}
+
+
 {% block body %}
-<section>
-    <div class="container">
+    <section>
+        <div class="container">
 
-        <h1>{{ preTitle }}{{ page.title }}</h1>
-        <p>{{ page.content|raw }}</p>
+            <h1>{{ preTitle }}{{ page.title }}</h1>
+            <p>{{ page.content|raw }}</p>
 
 
-        {% include 'post/_list_layout.html.twig' %}
+            {% include 'post/_list_layout.html.twig' with {
+                'posts': posts
+            } %}
 
-    </div>
-</section>
+        </div>
+    </section>
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/macy@2" defer=""></script>
     {{ parent() }}
 {% endblock %}
