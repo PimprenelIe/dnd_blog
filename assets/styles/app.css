@@ -1,5 +1,26 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
+/*
+ * Pour avoir une page qui remplisse toujours l'écran même sans contenu
+ */
 body{
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header,
+footer {
+    flex: none;
+}
+main {
+    flex: auto;
+}
+
+
+/*
+ * Asterisque rouge avant les champs requis (classe required sur label)
+ */
+label.required:before {
+    content: "* ";
+    color: red;
 }

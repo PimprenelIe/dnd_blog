@@ -23,6 +23,7 @@ Encore
     .addEntry('app', './assets/app.js')
     // .addEntry('font-awesome', './assets/lib/fontawesome-free/css/all.min.css')
     .addEntry('admin_help_seo', './assets/javascript/admin/help_seo.js')
+    .addEntry('contact', './assets/javascript/contact.js')
 
 
     .addStyleEntry('theme', './assets/styles/theme/style.css')

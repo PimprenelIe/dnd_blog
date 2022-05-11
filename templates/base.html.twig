@@ -30,12 +30,12 @@
     <meta name="twitter:description" content="{{ meta_description }}">
     <meta name="twitter:image" content="{{ image }}">
 
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:description" content="{{ meta_description }}" />
-    <meta property="og:image" content="{{ image }}" />
+    <meta property="og:title" content="{{ title }}"/>
+    <meta property="og:description" content="{{ meta_description }}"/>
+    <meta property="og:image" content="{{ image }}"/>
     <meta property="og:url" content="{{ absolute_url(path(app.request.attributes.get('_route'),
-        app.request.attributes.get('_route_params'))) }}" />
-    <meta property="og:type" content="website" />
+        app.request.attributes.get('_route_params'))) }}"/>
+    <meta property="og:type" content="website"/>
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('lib/fontawesome-free/css/all.min.css') }}" type="text/css">
@@ -51,16 +51,16 @@
 <body>
 
 <!-- preloader -->
-{#<div class="preloader">#}
-{#    <div class="loader">#}
-{#        <span class="dot"></span>#}
-{#        <div class="dots">#}
-{#            <span></span>#}
-{#            <span></span>#}
-{#            <span></span>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
+{# <div class="preloader"> #}
+{# <div class="loader"> #}
+{# <span class="dot"></span> #}
+{# <div class="dots"> #}
+{# <span></span> #}
+{# <span></span> #}
+{# <span></span> #}
+{# </div> #}
+{# </div> #}
+{# </div> #}
 <!-- /preloader -->
 
 <header class="navigation container">
@@ -71,46 +71,49 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-{#        <div class="collapse navbar-collapse text-center" id="navogation">#}
-{#            <ul class="navbar-nav ms-auto">#}
-{#                <li class="nav-item dropdown">#}
-{#                    <a class="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown"#}
-{#                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                        Home#}
-{#                    </a>#}
-{#                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-{#                        <a class="dropdown-item" href="index.html">Homepage 1</a>#}
-{#                        <a class="dropdown-item" href="homepage-2.html">Homepage 2</a>#}
-{#                    </div>#}
-{#                </li>#}
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link text-uppercase text-dark" href="about.html">About</a>#}
-{#                </li>#}
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link text-uppercase text-dark" href="category.html">Categories</a>#}
-{#                </li>#}
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link text-uppercase text-dark" href="contact.html">Contact</a>#}
-{#                </li>#}
-{#            </ul>#}
-{#            <form class="form-inline position-relative ms-lg-4">#}
-{#                <input class="form-control px-0 w-100" type="search" placeholder="Search">#}
-{#                <!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> -->#}
-{#                <a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a>#}
-{#            </form>#}
-{#        </div>#}
+        {# <div class="collapse navbar-collapse text-center" id="navogation"> #}
+        {# <ul class="navbar-nav ms-auto"> #}
+        {# <li class="nav-item dropdown"> #}
+        {# <a class="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown" #}
+        {# role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> #}
+        {# Home #}
+        {# </a> #}
+        {# <div class="dropdown-menu" aria-labelledby="navbarDropdown"> #}
+        {# <a class="dropdown-item" href="index.html">Homepage 1</a> #}
+        {# <a class="dropdown-item" href="homepage-2.html">Homepage 2</a> #}
+        {# </div> #}
+        {# </li> #}
+        {# <li class="nav-item"> #}
+        {# <a class="nav-link text-uppercase text-dark" href="about.html">About</a> #}
+        {# </li> #}
+        {# <li class="nav-item"> #}
+        {# <a class="nav-link text-uppercase text-dark" href="category.html">Categories</a> #}
+        {# </li> #}
+        {# <li class="nav-item"> #}
+        {# <a class="nav-link text-uppercase text-dark" href="contact.html">Contact</a> #}
+        {# </li> #}
+        {# </ul> #}
+        {# <form class="form-inline position-relative ms-lg-4"> #}
+        {# <input class="form-control px-0 w-100" type="search" placeholder="Search"> #}
+        {# <!-- <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button> --> #}
+        {# <a href="search.html" class="search-icon"><i class="ti-search text-dark"></i></a> #}
+        {# </form> #}
+        {# </div> #}
     </nav>
 </header>
 
 
-{% for flash in app.session.flashBag.get('success') %}
-    <div class="alert alert-success">
-        {{ flash }}
-    </div>
+{% for type, flashes in app.session.flashBag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ type }}">
+            <div class="container">{{ flash }}</div>
+        </div>
+    {% endfor %}
 {% endfor %}
 
-
-{% block body %}{% endblock %}
+<main>
+    {% block body %}{% endblock %}
+</main>
 
 <footer class="bg-secondary">
     <div class="section">
@@ -122,8 +125,10 @@
                 <div class="col-md-4 col-sm-6 mb-4 mb-md-0">
                     <h6>Support</h6>
                     <ul class="list-unstyled">
-                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'contact'}) }}" class="text-dark">Contact</a></li>
-                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'mentions-legales'}) }}" class="text-dark">Mentions légales</a></li>
+                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'contact'}) }}"
+                                                      class="text-dark">Contact</a></li>
+                        <li class="font-secondary"><a href="{{ path('page_show', {'slug': 'mentions-legales'}) }}"
+                                                      class="text-dark">Mentions légales</a></li>
                     </ul>
                 </div>
             </div>

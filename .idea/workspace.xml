@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c57898c3-ee69-4c0f-8f50-73bf15d093be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/SitemapSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/page/contact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dnd_blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dnd_blog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/javascript/contact.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ContactType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/HtmlFunctions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/mail/contact.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/login/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/login/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/page/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/page/contact.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/page/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/page/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,18 +199,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/page" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Form" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Form" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\templates\page" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\src\Controller" />
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\assets\javascript\theme" />
-      <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\assets\styles\theme" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nico2\PhpstormProjects\dnd_blog\public" />
@@ -251,7 +250,7 @@
       <workItem from="1652020899382" duration="16796000" />
       <workItem from="1652112121108" duration="1627000" />
       <workItem from="1652205138463" duration="47000" />
-      <workItem from="1652290403849" duration="8226000" />
+      <workItem from="1652290403849" duration="10978000" />
     </task>
     <servers />
   </component>

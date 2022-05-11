@@ -2,7 +2,6 @@
 
 {% block title %}{{ page.metaTitle }}{% endblock %}
 {% block meta_description %}{{ stripHtmlTags(page.metaDescription) }}{% endblock %}
-{% block image %}{{ absolute_url(asset('/upload/media/' ~ posts.first.imageTitle.fileName)|imagine_filter('full')) }}{% endblock %}
 
 
 {% block body %}
@@ -13,8 +12,55 @@
 
                     <div class="content">
                         {{ page.content|raw }}
+
+
+                            {{ form_start(form) }}
+
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    {{ form_row(form.information, {attr:{class:'form-control', placeholder:'jean@dupont.fr'}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    {{ form_row(form.message, {attr:{class:'form-control', rows:"8", cols:"30", placeholder:"Votre message ici !"}}) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="contact_rgpd">{{ form_widget(form.rgpd, {attr:{class:'mb-0'}}) }} &nbsp; <span style="color:#f00;">*</span> <small class="mb-0"> J'accepte que mes données soient utilisées dans le strict cas de cette demande de contact. Je reconnais avoir été informé de l'interdiction d'utiliser une formulation contraire à la dignité des personnes, des propos discriminants, dégradants ou injurieux, ainsi que toute forme d'appel à la haine ou à la violence. Ma formulation relève de ma seule responsabilité.</small></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <div class="g-recaptcha" data-sitekey="6LcNcbEUAAAAAGpxhsdY88PMipBKmfBcpQJoYZjo" data-callback="enableContactSubmitBtn"></div>
+                                </div>
+                            </div>
+                            <div class="row hidden" style="display:none;">
+                                <div class="col-md-6 form-group">
+                                    {{ form_widget(form.email) }}
+                                    {{ form_widget(form.test1) }}
+                                    {{ form_widget(form.test2) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
+
+                                    {{ form_widget(form.send, {attr:{class: 'btn btn-primary'}}) }}
+{#                                    <input type="submit" name="send" value=" Envoyer votre message" class="btn btn-primary" id="contactFormSubmitButton">#}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+
+
                     </div>
                 </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('contact') }}
 {% endblock %}
