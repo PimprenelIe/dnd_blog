@@ -14,13 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
-    /**
-     * @Route("/", name="home")
-     * @param Request $request
-     * @param PaginatorInterface $paginator
-     * @param PostRepository $postRepository
-     * @return Response
-     */
+    #[Route('/', name: 'home', options: ['sitemap' => ['section' => 'site']])]
     public function home(
         Request $request,
         PaginatorInterface $paginator,

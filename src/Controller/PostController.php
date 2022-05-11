@@ -17,12 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
 
-    /**
-     * @Route("/post/{slug}", name="post_show")
-     * @param Post $post
-     * @param PostRepository $postRepository
-     * @return Response
-     */
+    #[Route('/post/{slug}', name: 'post_show')]
     public function show(
         Post $post,
         PostRepository $postRepository
@@ -40,14 +35,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/category/{slug}", name="posts_category")
-     * @param Request $request
-     * @param Category $category
-     * @param PaginatorInterface $paginator
-     * @param PostRepository $postRepository
-     * @return Response
-     */
+    #[Route('/category/{slug}', name: 'posts_category')]
     public function category(
         Request $request,
         Category $category,
@@ -68,14 +56,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/keyword/{slug}", name="posts_keyword")
-     * @param Request $request
-     * @param Keyword $keyword
-     * @param PaginatorInterface $paginator
-     * @param PostRepository $postRepository
-     * @return Response
-     */
+    #[Route('/keyword/{slug}', name: 'posts_keyword')]
     public function keyword(
         Request $request,
         Keyword $keyword,
